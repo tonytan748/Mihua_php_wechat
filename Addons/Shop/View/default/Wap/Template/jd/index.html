@@ -25,6 +25,7 @@
             </span>
         </div>
         <!-- 店标和名称 -->
+<!--
         <div class="shop_row">
         	<notempty name="shop.logo"><img src="{$shop.logo|get_cover_url}"/></notempty>
             {$shop.title}
@@ -38,19 +39,64 @@
             <span class="line"></span>
             <a href="{:U('contact',array('shop_id'=>$shop_id))}">联系卖家</a>
         </div>
-        <!-- 推荐类目 -->
-        <notempty name="recommend_cate">
+-->
+
+
+
+      <div class="pic-menu">
+            <ul class="first-line">
+                <li data-ng-click="changePath('/goods-list/0',0);">
+                    <p class="icon icon-ribbon"></p>
+                    <p>排行榜</p>
+                </li>
+                <li data-ng-click="changePath('/goods-list/00',1);">
+                    <p class="icon icon-star2"></p>
+                    <p>我的订单</p>
+                </li>
+                <li data-ng-click="changePath('/goods-list/000',2);">
+                    <p class="icon icon-folder"></p>
+                    <p>在线客服</p>
+                </li>
+                <li data-toggle data-selector="div.my-info"  ng-click="getContactTools();">
+                    <p class="icon icon-users"></p>
+                    <p>关于我们</p>
+                </li>
+            </ul>
+            <ul>
+                <li data-ng-click="changePath('/order-list');">
+                    <p class="icon icon-clipboard"></p>
+                    <p>充值中心</p>
+                </li>
+                <li data-ng-click="changePath('/order-payment');">
+                    <p class="icon icon-banknote"></p>
+                    <p>付款查询</p>
+                </li>
+                <li data-ng-click="changePath('/order-transport');">
+                    <p class="icon icon-truck"></p>
+                    <p>物流查询</p>
+                </li>
+                <li data-ng-click="changePath('/info');">
+                    <p class="icon icon-chat-3"></p>
+                    <p>分类</p>
+                </li>
+            </ul>
+        </div>
+
+
+  <!-- 推荐类目 -->
+<!--        <notempty name="recommend_cate">
         <div class="recommend_cate">
            <volist name="recommend_cate" id="cate">
         	<a href="{:U('lists',array('shop_id'=>$shop_id,'cid0'=>$cate[pid],'cid1'=>$cate[id]))}"><img src="{$cate.icon|get_cover_url}"/></a>
             </volist>
         </div>
         </notempty>
+-->
         
         <!-- 推荐商品 -->
         <notempty name="recommend_list">
         <div class="recommend_list">
-        	<h6 class="cate_title">商城推荐</h6>
+        	<h6 class="cate_title">秒杀专场</h6>
             <div class="product_list">
                 <ul>
                     <volist name="recommend_list" id="vo">
@@ -59,7 +105,8 @@
                             <img src="{$vo.cover|get_cover_url}"/>
                             <div class="desc">
                             	<p class="name">{$vo.title}</p>
-                            	<p class="price">￥{$vo.price|wp_money_format}</p>
+				<p class="price"><notempty name="vo.old_price"><del>￥{{vo.old_price|wp_money_format}}</del>
+                            	<span id="price">￥{$vo.price|wp_money_format}</span></p>
                             </div>
                         </a>
                     </li>
